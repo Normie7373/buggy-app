@@ -1,0 +1,9 @@
+{
+  "error_type": "TypeError",
+  "message": "unsupported operand type(s) for +: 'int' and 'str'",
+  "file": "app/utils/calculator.py",
+  "line": 42,
+  "stack_trace": "File 'calculator.py', line 42, in add_values\n  return a + b\nTypeError: unsupported operand type(s) for +: 'int' and 'str'",
+  "severity": "high",
+  "timestamp": "2026-04-13T10:30:00Z"
+}
