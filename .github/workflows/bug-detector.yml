@@ -19,11 +19,10 @@ jobs:
       - name: Run code and capture error
         run: |
           python app.py > output.log 2>&1 || true
-
       - name: Send error to n8n
         run: |
-          ERROR=$(cat output.log | head -n 20 | sed 's/"/\\"/g')
-          echo "Sending: $ERROR"
+          ERROR=$(cat output.log | head -n 20)
+          PAYLOAD=$(jq -n --arg err "$ERROR" '{"error": $err}')
           curl -v -X POST https://crayon-employer-wasting.ngrok-free.dev/webhook/bug-detector \
-          -H "Content-Type: application/json" \
-          -d "{\"error\":\"$ERROR\"}"
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD"
