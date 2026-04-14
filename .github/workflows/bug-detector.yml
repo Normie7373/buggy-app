@@ -26,3 +26,10 @@ jobs:
           curl -X POST https://crayon-employer-wasting.ngrok-free.dev/webhook/bug-detector \
           -H "Content-Type: application/json" \
           -d "{\"error\":\"$ERROR\"}"
+      - name: Send error to n8n
+        if: failure()
+        run: |
+          ERROR=$(cat error.log | head -n 20 | sed 's/"/\\"/g')
+          curl -X POST https://crayon-employer-wasting.ngrok-free.dev/webhook/bug-detector \
+          -H "Content-Type: application/json" \
+          -d "{\"error\":\"$ERROR\"}"
