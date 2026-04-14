@@ -2,6 +2,8 @@ name: Bug Detector
 
 on:
   push:
+    branches-ignore:
+      - 'ai-fix-**'
 
 jobs:
   detect-and-report:
@@ -19,6 +21,7 @@ jobs:
       - name: Run code and capture error
         run: |
           python app.py > output.log 2>&1 || true
+
       - name: Send error to n8n
         run: |
           ERROR=$(cat output.log | head -n 20)
