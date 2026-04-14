@@ -23,6 +23,6 @@ jobs:
       - name: Send error to n8n
         run: |
           ERROR=$(cat error.log | head -n 20 | sed 's/"/\\"/g')
-          curl -X POST https://abc123.ngrok.io/webhook/bug-detector \
+          curl -X POST https://crayon-employer-wasting.ngrok-free.dev/webhook/bug-detector \
           -H "Content-Type: application/json" \
           -d "{\"error\":\"$ERROR\"}"
