@@ -18,7 +18,7 @@ jobs:
 
       - name: Run code and capture error
         run: |
-          python app.py 2> error.log || true
+          python app.py > output.log 2>&1 || true
 
       - name: Send error to n8n
         run: |
